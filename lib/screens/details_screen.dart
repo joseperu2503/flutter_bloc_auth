@@ -5,13 +5,13 @@ import 'package:flutter_bloc_auth/blocs/auth/auth_bloc.dart';
 import 'package:flutter_bloc_auth/blocs/auth/auth_event.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class DetailsScreen extends StatelessWidget {
+  const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Protected Home')),
+      appBar: AppBar(title: const Text('Details')),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -24,8 +24,8 @@ class HomeScreen extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
-              onPressed: () => context.push('/details'),
-              child: const Text('Details'),
+              onPressed: () => context.pop(),
+              child: const Text('Go back'),
             ),
           ),
         ],

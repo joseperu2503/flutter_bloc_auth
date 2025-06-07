@@ -4,18 +4,23 @@ import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(const AuthState(AuthStatus.unauthenticated)) {
+  AuthBloc() : super(const AuthState.unauthenticated()) {
     on<AuthLoginRequested>((event, emit) async {
-      emit(const AuthState(AuthStatus.authenticated));
+      const fakeToken = '1234567890abcdef';
 
-      await Future.delayed(const Duration(seconds: 2));
+      // Guardamos el token al autenticar
+      emit(const AuthState.authenticated(fakeToken));
+      print('Token guardado: $fakeToken');
 
-      add(AuthLogoutRequested());
+      // await Future.delayed(const Duration(seconds: 2));
+
+      // add(AuthLogoutRequested());
     });
 
     on<AuthLogoutRequested>((event, emit) {
-      emit(const AuthState(AuthStatus.unauthenticated));
-      print('Logout');
+      // Eliminamos el token al cerrar sesión
+      emit(const AuthState.unauthenticated());
+      print('Token eliminado. Logout');
     });
   }
 }
