@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_auth/blocs/auth/auth_bloc.dart';
+import 'package:flutter_bloc_auth/blocs/auth/auth_event.dart';
 import 'package:flutter_bloc_auth/router.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final AuthBloc authBloc = AuthBloc();
 
-  MyApp({super.key});
+  @override
+  void initState() {
+    super.initState();
+    authBloc.add(AuthCheckStatus());
+  }
 
   @override
   Widget build(BuildContext context) {
